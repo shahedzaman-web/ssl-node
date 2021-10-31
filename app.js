@@ -48,7 +48,9 @@ app.get('/init', (req, res) => {
         // Redirect the user to payment gateway
         let GatewayPageURL = apiResponse.GatewayPageURL
         // res.redirect(GatewayPageURL)
-        res.send(GatewayPageURL)
+        res.send({
+            url: GatewayPageURL,
+        message: "success"})
         console.log('Redirecting to: ', GatewayPageURL)
     });
 })
