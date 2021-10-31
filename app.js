@@ -10,17 +10,17 @@ const { API_PORT,PORT } = process.env;
 const port = PORT || API_PORT;
 
 
-
+const  url =`http://localhost:${port}`
 //sslcommerz init
 app.get('/init', (req, res) => {
     const data = {
         total_amount: 100,
         currency: 'BDT',
         tran_id: 'REF123', // use unique tran_id for each api call
-        success_url: port + '/success',
-        fail_url:  port + '/fail',
-        cancel_url: port + '/cancel',
-        ipn_url: port + '/ipn',
+        success_url: `${url}/success`,
+        fail_url:  `${url}+/fail`,
+        cancel_url: `${url}+/cancel`,
+        ipn_url: `${url}+/ipn`,
         shipping_method: 'Courier',
         product_name: 'Computer.',
         product_category: 'Electronic',
@@ -54,6 +54,11 @@ app.get('/init', (req, res) => {
         console.log('Redirecting to: ', GatewayPageURL)
     });
 })
+app.post('/success',(req,res)=>{
+    return res.status(200).json({
+       message: "Payment successful!"
+    })
+} )
 //sslcommerz validation 
 
 app.get('/validate', (req, res) => {
@@ -81,6 +86,7 @@ app.get('/initiate-refund', (req, res) => {
         //https://developer.sslcommerz.com/doc/v4/#initiate-the-refund
     });
 })
+
 //SSLCommerz refundQuery
 
 app.get('/refund-query', (req, res) => {
