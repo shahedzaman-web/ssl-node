@@ -6,7 +6,10 @@ const store_id = 'abc617d15ccd10f7'
 const store_passwd = 'abc617d15ccd10f7@ssl'
 const is_live = false //true for live, false for sandbox
 
-const port = 3030
+const { API_PORT } = process.env;
+const port = 3030 || API_PORT;
+
+
 
 //sslcommerz init
 app.get('/init', (req, res) => {
@@ -14,10 +17,10 @@ app.get('/init', (req, res) => {
         total_amount: 100,
         currency: 'BDT',
         tran_id: 'REF123', // use unique tran_id for each api call
-        success_url: 'http://localhost:3030/success',
-        fail_url: 'http://localhost:3030/fail',
-        cancel_url: 'http://localhost:3030/cancel',
-        ipn_url: 'http://localhost:3030/ipn',
+        success_url: port + '/success',
+        fail_url:  port + '/fail',
+        cancel_url: port + '/cancel',
+        ipn_url: port + '/ipn',
         shipping_method: 'Courier',
         product_name: 'Computer.',
         product_category: 'Electronic',
@@ -88,7 +91,9 @@ app.get('/refund-query', (req, res) => {
     });
 })
 
-
+app.get('/', (req, res) => {
+    res.send("Welcome!")
+})
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
