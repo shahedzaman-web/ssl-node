@@ -10,7 +10,7 @@ const { API_PORT,PORT } = process.env;
 const port = PORT || API_PORT;
 
 
-const  url =`http://localhost:${port}`
+const  url ="https://afternoon-fjord-99394.herokuapp.com"
 //sslcommerz init
 app.get('/init', (req, res) => {
     const data = {
