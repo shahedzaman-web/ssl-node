@@ -1,13 +1,13 @@
 const express = require("express");
 const app = express()
-
+require("dotenv").config();
 const SSLCommerzPayment = require('sslcommerz-lts')
 const store_id = 'abc617d15ccd10f7'
 const store_passwd = 'abc617d15ccd10f7@ssl'
 const is_live = false //true for live, false for sandbox
 
-const { API_PORT } = process.env;
-const port = 3030 || API_PORT;
+const { API_PORT,PORT } = process.env;
+const port = PORT || API_PORT;
 
 
 
