@@ -101,6 +101,11 @@ app.post('/success',(req,res)=>{
       </div>
         <h1>Success</h1> 
         <p>We received your purchase request;<br/> we'll be in touch shortly!</p>
+        <a href="/success-backToHome" style="text-decoration:none;">
+          <button style="background: #88B04B; color: white; border: 0; border-radius: 4px; padding: 15px 20px;">
+            Back to Home
+          </button>
+        </a>
       </div>
     </body>
 </html>`)
